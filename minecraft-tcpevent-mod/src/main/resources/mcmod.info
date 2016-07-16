@@ -5,7 +5,7 @@
   "description": "Broadcasts world events as JSON over tcp",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "https://github.com/ericbottard/minecraft-tcpevent-mod",
+  "url": "https://github.com/ericbottard/minecraft-hue-dataflow/minecraft-tcpevent-mod",
   "updateUrl": "",
   "authorList": ["Eric Bottard", "Ilayaperumal Gopinathan"],
   "credits": "",
