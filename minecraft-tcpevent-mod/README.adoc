@@ -1,0 +1,28 @@
+= Minecraft TCP Events broadcasting mod
+
+This is a simple Minecraft Forge Mod that can emit JSON serialized representations
+of events happening in the Minecraft world.
+
+It opens a Netty tcp server and all clients connected to it will receive event updates
+as they happen.
+
+== Trying it out
+Seeing the mod in action is a simple as
+
+1. In a first terminal, run
++
+[source, bash]
+```
+./gradlew runClient
+```
++
+2. In a second terminal (and a third, and a fourth, _etc._) run
++
+[source, bash]
+```
+telnet localhost 8080
+```
+
+As events happen in the game (for example a block being placed), JSON representations
+of events should be displayed in the telnet windows.
+
