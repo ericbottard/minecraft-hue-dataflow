@@ -1,0 +1,42 @@
+= Minecraft Hue Dataflow
+
+This project contains the required bits necessary to run a Spring Cloud Dataflow demo that shows
+how easy it is to integrate the most exotic things together, for example Minecraft and a physical object such
+as Philips Hue lightbulbs.
+
+== Architecture
+
+== Project Layout
+This repository contains the following files of interest:
+
+link::minecraft-tcpevent-mod[`minecraft-tcpevent-mod/`]:: A minecraft Mod, using the the Minecraft Forge framework. This is a Gradle project and
+ is meant to be built separately.
+link::hue-sink[`hue-sink/`]:: A Spring Boot App, leveraging Spring Cloud Stream annotations, so it can be used as a Dataflow sink.
+This app can interact with Philips Hue lightbulbs using the REST API exposed by a Philips Hue bridge
+link::map-sink[`map-sink/`]:: Another Boot sink app, but this time a GUI that displays moving entities in the Minecraft game by reacting
+to update events
+link::stream-application-rabbit-maven[`stream-application-rabbit-maven`]:: A convenience file used to register all out-of-the-box Dataflow applications as well
+ as the `hue-sink` app and the `map-sink` app contained in this project.
+
+== Building and Running
+=== Building the Boot apps
+Each Boot app is a standalone Maven project. The root of this repository also contains a parent `pom.xml` file that
+allows them to be built all at once. Hence,
+```bash
+minecraft-hue-dataflow $> ./mwnw clean install
+```
+should build everything you need.
+
+=== Building and Running the Minecraft Mod
+The Minecraft Mod relies on Minecraft Forge modding support. You can read more about Forge on its website, but
+to simply run the demo, you only need to
+```bash
+minecraft-hue-dataflow/minecraft-tcpevent-mod $> ./gradlew runClient
+```
+This will compile and package the mod and run a Minecraft Client with the mod already installed. You can configure the
+mod itself (for example choosing which type of events are emitted) by clicking on the "Mods" button.
+
+image:minecraft-home.png
+
+=== Getting started with Dataflow
+
