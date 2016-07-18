@@ -10,6 +10,7 @@
 
 	<modules>
 		<module>hue-sink</module>
+		<module>map-sink</module>
 	</modules>
 
 	<profiles>

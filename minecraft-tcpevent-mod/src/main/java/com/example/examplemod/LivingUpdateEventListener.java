@@ -6,6 +6,7 @@ import java.util.Map;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -24,7 +25,7 @@ public class LivingUpdateEventListener {
 	@SubscribeEvent
 	public void living(LivingEvent.LivingUpdateEvent event) {
 		EntityLivingBase entity = event.getEntityLiving();
-		if (!(entity instanceof EntitySheep)) {
+		if (!(entity instanceof EntitySheep) && !(entity instanceof EntityPlayer)) {
 			return;
 		}
 		if ((int)entity.posX != (int)entity.prevPosX
@@ -35,12 +36,14 @@ public class LivingUpdateEventListener {
 			result.put("y", event.getEntity().getPosition().getY());
 			result.put("z", event.getEntity().getPosition().getZ());
 			result.put("entity", event.getEntity().getEntityId());
-			EntitySheep sheep = (EntitySheep) entity;
-			EnumDyeColor color = sheep.getFleeceColor();
-			Color c = ColorUtils.COLORS.get(color.toString().toUpperCase());
-			result.put("red", c.getRed());
-			result.put("green", c.getGreen());
-			result.put("blue", c.getBlue());
+			if (entity instanceof EntitySheep) {
+				EntitySheep sheep = (EntitySheep) entity;
+				EnumDyeColor color = sheep.getFleeceColor();
+				Color c = ColorUtils.COLORS.get(color.toString().toUpperCase());
+				result.put("red", c.getRed());
+				result.put("green", c.getGreen());
+				result.put("blue", c.getBlue());
+			}
 
 			broadcastServer.broadcast(result);
 		}
