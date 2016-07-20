@@ -1,0 +1,175 @@
+{
+   "schedules" : {
+      "1" : {
+         "time" : "2012-10-29T12:00:00",
+         "command" : {
+            "method" : "PUT",
+            "address" : "/api/newdeveloper/groups/0/action",
+            "body" : {
+               "bri" : null,
+               "scene" : null,
+               "xy" : null,
+               "transitiontime" : null,
+               "on" : true
+            }
+         },
+         "name" : "schedule",
+         "description" : ""
+      }
+   },
+   "scenes" : {},
+   "groups" : {
+      "1" : {
+         "action" : {
+            "effect" : "none",
+            "on" : true,
+            "sat" : 144,
+            "bri" : 254,
+            "hue" : 33536,
+            "reachable" : null,
+            "alert" : null,
+            "ct" : 201,
+            "xy" : [
+               0.346,
+               0.3568
+            ],
+            "colormode" : "xy"
+         },
+         "name" : "Group 1",
+         "lights" : [
+            "1",
+            "2"
+         ]
+      }
+   },
+   "config" : {
+      "linkbutton" : false,
+      "ipaddress" : "192.168.2.213:8000",
+      "dhcp" : true,
+      "whitelist" : {
+         "newdeveloper" : {
+            "create date" : "2012-10-29T12:00:00",
+            "last use date" : "2012-10-29T12:00:00",
+            "name" : "test user"
+         },
+         "DcVGNJn0BRlICjNV8UKvPxbdIXp9IVDJyG6Fn9yP" : {
+            "create date" : "2012-10-29T12:00:00",
+            "last use date" : "2012-10-29T12:00:00",
+            "name" : "test user"
+         }
+      },
+      "netmask" : "255.255.255.0",
+      "gateway" : "192.168.2.1",
+      "swversion" : "01005215",
+      "proxyaddress" : "",
+      "swupdate" : {
+         "text" : "",
+         "notify" : false,
+         "updatestate" : 0,
+         "url" : ""
+      },
+      "portalservices" : false,
+      "UTC" : "2012-10-29T12:05:00",
+      "mac" : "00:00:88:00:bb:ee",
+      "proxyport" : 0,
+      "name" : "Philips hue"
+   },
+   "lights" : {
+      "3" : {
+         "type" : "Extended color light",
+         "name" : "Hue Lamp 3",
+         "modelid" : "LCT001",
+         "swversion" : "65003148",
+         "state" : {
+            "reachable" : true,
+            "ct" : 201,
+            "alert" : "none",
+            "xy" : [
+               0.346,
+               0.3568
+            ],
+            "colormode" : "hs",
+            "effect" : "none",
+            "on" : true,
+            "sat" : 254,
+            "bri" : 254,
+            "hue" : 65136
+         },
+         "uniqueid" : "00:17:88:01:00:d4:12:08-0c",
+         "pointsymbol" : {
+            "3" : "none",
+            "7" : "none",
+            "8" : "none",
+            "6" : "none",
+            "1" : "none",
+            "4" : "none",
+            "5" : "none",
+            "2" : "none"
+         }
+      },
+      "1" : {
+         "pointsymbol" : {
+            "1" : "none",
+            "6" : "none",
+            "7" : "none",
+            "8" : "none",
+            "3" : "none",
+            "2" : "none",
+            "5" : "none",
+            "4" : "none"
+         },
+         "uniqueid" : "00:17:88:01:00:d4:12:08-0a",
+         "state" : {
+            "bri" : 254,
+            "hue" : 4444,
+            "sat" : 254,
+            "on" : true,
+            "effect" : "none",
+            "colormode" : "hs",
+            "xy" : [
+               0,
+               0
+            ],
+            "alert" : "none",
+            "reachable" : true,
+            "ct" : 0
+         },
+         "modelid" : "LCT001",
+         "swversion" : "65003148",
+         "name" : "Hue Lamp 1",
+         "type" : "Extended color light"
+      },
+      "2" : {
+         "type" : "Extended color light",
+         "name" : "Hue Lamp 2",
+         "swversion" : "65003148",
+         "modelid" : "LCT001",
+         "state" : {
+            "hue" : 23536,
+            "bri" : 254,
+            "sat" : 144,
+            "on" : true,
+            "effect" : "none",
+            "colormode" : "hs",
+            "xy" : [
+               0.346,
+               0.3568
+            ],
+            "reachable" : true,
+            "alert" : "none",
+            "ct" : 201
+         },
+         "uniqueid" : "00:17:88:01:00:d4:12:08-0b",
+         "pointsymbol" : {
+            "4" : "none",
+            "5" : "none",
+            "2" : "none",
+            "3" : "none",
+            "7" : "none",
+            "8" : "none",
+            "6" : "none",
+            "1" : "none"
+         }
+      }
+   }
+}

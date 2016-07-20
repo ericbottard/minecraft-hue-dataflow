@@ -30,7 +30,7 @@ public class LivingUpdateListener extends JPanel {
 
 	private int centerZ;
 
-	private int maxLength = 5;
+	private int maxLength = 50;
 
 	public LivingUpdateListener() {
 		setBackground(Color.gray);
@@ -99,12 +99,12 @@ public class LivingUpdateListener extends JPanel {
 		int[] xs = new int[maxLength];
 		int[] ys = new int[maxLength];
 
-		g2.translate(300- centerX, 300- centerZ);
+		g2.translate(getWidth() - centerX, getHeight() - centerZ);
 
 		g2.setStroke(new BasicStroke(3));
 		for (ColoredPath path : paths.values()) {
 			g2.setColor(path.color);
-			for (int i = 0 ; i < path.points.size() ; i++) {
+			for (int i = 0; i < path.points.size(); i++) {
 				xs[i] = path.points.get(i).x;
 				ys[i] = path.points.get(i).y;
 			}
@@ -112,7 +112,7 @@ public class LivingUpdateListener extends JPanel {
 		}
 
 		g2.setColor(Color.BLACK);
-		g2.drawArc(centerX, centerZ, 5, 5, 0, 359);
+		g2.drawArc(centerX, centerZ, 5, 5, 0, 360);
 
 	}
 }
