@@ -17,6 +17,8 @@ This app can interact with Philips Hue lightbulbs using the REST API exposed by 
 link::map-sink[`map-sink/`]:: Another Boot sink app, but this time a GUI that displays moving entities in the Minecraft
 game by reacting
 to update events
+link::color-mixer-processor[`color-mixer-processor/`]:: A processor app that can work with color information (convert
+colorspaces, mix colors, etc).
 link::stream-application-rabbit-maven[`stream-application-rabbit-maven`]:: A convenience file used to register all
 out-of-the-box Dataflow applications as well
  as the `hue-sink` app and the `map-sink` app contained in this project.

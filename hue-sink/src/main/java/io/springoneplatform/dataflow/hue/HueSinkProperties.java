@@ -14,7 +14,7 @@ public class HueSinkProperties {
 	/**
 	 * The id of the light to alter.
 	 */
-	@Value("${INSTANCE_INDEX:1}")
+	@Value("#{1 + ${INSTANCE_INDEX:0}}")
 	private String light;
 
 	/**

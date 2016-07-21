@@ -1,5 +1,8 @@
 package io.springoneplatform.dataflow.hue;
 
+import java.awt.Color;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Eric Bottard
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class State {
 
 	private Boolean on;
@@ -26,6 +30,12 @@ public class State {
 
 	@JsonProperty("ct")
 	private Integer temperature;
+
+	private Integer red;
+
+	private Integer green;
+
+	private Integer blue;
 
 	public Boolean getOn() {
 		return on;
@@ -65,6 +75,32 @@ public class State {
 
 	public void setTemperature(Integer temperature) {
 		this.temperature = temperature;
+	}
+
+	public void setRed(Integer red) {
+		this.red = red;
+	}
+
+	public void setGreen(Integer green) {
+		this.green = green;
+	}
+
+	public void setBlue(Integer blue) {
+		this.blue = blue;
+	}
+
+	/**
+	 * If RGB values have been set, convert those to HSB so they take effect.
+	 */
+	public State convert() {
+		if (red != null && green != null && blue != null) {
+			float[] hsb = new float[3];
+			Color.RGBtoHSB(red, green, blue, hsb);
+			hue = (int) (65535 * hsb[0]);
+			saturation = (int) (254 * hsb[1]);
+			brightness = (int) (254 * hsb[2]);
+		}
+		return this;
 	}
 
 	@Override
