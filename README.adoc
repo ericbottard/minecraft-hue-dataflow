@@ -74,5 +74,5 @@ dataflow> stream create foo --definition "... | hue --port=8080" -deploy
 Now that all the pieces are in place, it's time to create and deploy streams with Dataflow.
 Let's start by monitoring moving sheeps on the map:
 ```
-dataflow
+dataflow> stream create herd --definition "tcp-client --port=8080 | map" --deploy
 ```

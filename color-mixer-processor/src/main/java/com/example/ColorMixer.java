@@ -18,11 +18,13 @@ import org.springframework.messaging.handler.annotation.SendTo;
 @EnableBinding(Processor.class)
 public class ColorMixer {
 
+	private ObjectMapper objectMapper = new ObjectMapper();
+
 	@StreamListener(Processor.INPUT)
 	@SendTo(Processor.OUTPUT)
 	public Map<String, Object> mix(String event) throws IOException {
 		System.out.println("Received " + event);
-		Map<String, Object> json = new ObjectMapper().readValue(event, Map.class);
+		Map<String, Object> json = objectMapper.readValue(event, Map.class);
 
 		Map<String, Object> result = new LinkedHashMap<>();
 		float[] hsb = new float[3];

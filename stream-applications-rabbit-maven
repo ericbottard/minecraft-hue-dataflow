@@ -45,6 +45,7 @@ sink.tcp=maven://org.springframework.cloud.stream.app:tcp-sink-rabbit:1.0.0.BUIL
 sink.throughput=maven://org.springframework.cloud.stream.app:throughput-sink-rabbit:1.0.0.BUILD-SNAPSHOT
 sink.websocket=maven://org.springframework.cloud.stream.app:websocket-sink-rabbit:1.0.0.BUILD-SNAPSHOT
 
+source.tcp-client=maven://org.springframework.cloud.stream.app:tcp-client-source-rabbit:1.0.0.BUILD-SNAPSHOT
+processor.tcp-client=maven://org.springframework.cloud.stream.app:tcp-client-processor-rabbit:1.0.0.BUILD-SNAPSHOT
 sink.hue=maven://io.springoneplatform.dataflow:hue-sink:1.0.0.BUILD-SNAPSHOT
 sink.map=maven://io.springoneplatform.dataflow:map-sink:1.0.0.BUILD-SNAPSHOT
-processor.tcp-client=maven://org.springframework.cloud.stream.app:tcp-client-processor-rabbit:1.0.0.BUILD-SNAPSHOT

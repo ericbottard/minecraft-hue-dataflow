@@ -12,7 +12,10 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
- * Created by ericbottard on 13/07/16.
+ * A listener that emits an event every time an entity (either a sheep or a player)
+ * changes coordinates on the map. For sheep, also adds the color of that sheep as RGB values.
+ *
+ * @author Eric Bottard
  */
 public class LivingUpdateEventListener {
 
