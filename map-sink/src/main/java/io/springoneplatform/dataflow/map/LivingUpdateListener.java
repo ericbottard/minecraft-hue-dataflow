@@ -99,7 +99,7 @@ public class LivingUpdateListener extends JPanel {
 		int[] xs = new int[maxLength];
 		int[] ys = new int[maxLength];
 
-		g2.translate(getWidth() - centerX, getHeight() - centerZ);
+		g2.translate(getWidth()/2 - centerX, getHeight()/2 - centerZ);
 
 		g2.setStroke(new BasicStroke(3));
 		for (ColoredPath path : paths.values()) {

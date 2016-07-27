@@ -7,9 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
+import org.springframework.integration.annotation.ServiceActivator;
 
 /**
  * A sink app that displays living entities onSheep events as paths on a map.
@@ -23,9 +23,15 @@ public class MapSinkConfiguration {
 	@Autowired
 	private MapSinkProperties properties;
 
-	@StreamListener(Sink.INPUT)
+	private ObjectMapper objectMapper = new ObjectMapper();
+
+	@ServiceActivator(inputChannel = Sink.INPUT)
 	public void update(String p) throws IOException {
-		LivingUpdatePayload livingUpdatePayload = new ObjectMapper().readValue(p, LivingUpdatePayload.class);
+		LivingUpdatePayload livingUpdatePayload = objectMapper.readValue(p, LivingUpdatePayload.class);
+		if (livingUpdatePayload.getEntity() == null) {
+			// not an actual livingUpdatePayload
+			return;
+		}
 		if (livingUpdatePayload.getRed() != null) {
 			livingUpdateListener().onSheep(livingUpdatePayload);
 		}
@@ -34,11 +40,6 @@ public class MapSinkConfiguration {
 		}
 	}
 
-	//	@StreamListener(Sink.INPUT)
-//	public void onSheep(LivingUpdatePayload livingUpdatePayload) {
-//		livingUpdateListener().onSheep(livingUpdatePayload);
-//	}
-//
 	@Bean
 	public LivingUpdateListener livingUpdateListener() {
 		return new LivingUpdateListener();

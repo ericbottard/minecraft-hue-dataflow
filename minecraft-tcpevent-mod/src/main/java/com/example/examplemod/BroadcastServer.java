@@ -1,5 +1,8 @@
 package com.example.examplemod;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -28,6 +31,8 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 public class BroadcastServer {
 
 	private int port;
+
+	private Map<Integer, ChannelGroup> channelGroups = new LinkedHashMap<>();
 
 	private ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 

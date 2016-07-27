@@ -1,6 +1,6 @@
 package com.example.examplemod;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,13 +31,17 @@ public class LivingUpdateEventListener {
 		if (!(entity instanceof EntitySheep) && !(entity instanceof EntityPlayer)) {
 			return;
 		}
-		if ((int)entity.posX != (int)entity.prevPosX
-				|| (int)entity.posY != (int)entity.prevPosY
-				|| (int)entity.posZ != (int)entity.prevPosZ) {
+		int dx = (int) entity.posX - (int) entity.prevPosX;
+		int dy = (int) entity.posY - (int) entity.prevPosY;
+		int dz = (int) entity.posZ - (int) entity.prevPosZ;
+		if (dx != 0 || dy != 0 || dz != 0) {
 			Map<String, Object> result = new LinkedHashMap<>();
 			result.put("x", event.getEntity().getPosition().getX());
 			result.put("y", event.getEntity().getPosition().getY());
 			result.put("z", event.getEntity().getPosition().getZ());
+			result.put("dx", dx);
+			result.put("dy", dy);
+			result.put("dz", dz);
 			result.put("entity", event.getEntity().getEntityId());
 			if (entity instanceof EntitySheep) {
 				EntitySheep sheep = (EntitySheep) entity;
@@ -46,6 +50,7 @@ public class LivingUpdateEventListener {
 				result.put("red", c.getRed());
 				result.put("green", c.getGreen());
 				result.put("blue", c.getBlue());
+				result.put("dye", color);
 			}
 
 			broadcastServer.broadcast(result);

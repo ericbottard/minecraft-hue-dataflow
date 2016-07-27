@@ -37,6 +37,7 @@ public class PlaceEventListener {
 			result.put("red", c.getRed());
 			result.put("green", c.getGreen());
 			result.put("blue", c.getBlue());
+			result.put("dye", color);
 		}
 		broadcastServer.broadcast(result);
 	}
