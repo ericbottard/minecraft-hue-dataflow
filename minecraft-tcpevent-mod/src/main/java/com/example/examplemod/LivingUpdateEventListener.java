@@ -46,7 +46,7 @@ public class LivingUpdateEventListener {
 			if (entity instanceof EntitySheep) {
 				EntitySheep sheep = (EntitySheep) entity;
 				EnumDyeColor color = sheep.getFleeceColor();
-				Color c = ColorUtils.COLORS.get(color.toString().toUpperCase());
+				Color c = ColorUtils.COLORS.get(color.name().toUpperCase());
 				result.put("red", c.getRed());
 				result.put("green", c.getGreen());
 				result.put("blue", c.getBlue());

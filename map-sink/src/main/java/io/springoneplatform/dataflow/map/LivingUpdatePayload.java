@@ -1,5 +1,6 @@
 package io.springoneplatform.dataflow.map;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * @author Eric Bottard
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LivingUpdatePayload {
 
 	private Integer x, y, z, entity, red, green, blue;

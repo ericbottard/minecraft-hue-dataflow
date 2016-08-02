@@ -26,7 +26,7 @@ public class MapSinkConfiguration {
 	private ObjectMapper objectMapper = new ObjectMapper();
 
 	@ServiceActivator(inputChannel = Sink.INPUT)
-	public void update(String p) throws IOException {
+	public void update(byte[] p) throws IOException {
 		LivingUpdatePayload livingUpdatePayload = objectMapper.readValue(p, LivingUpdatePayload.class);
 		if (livingUpdatePayload.getEntity() == null) {
 			// not an actual livingUpdatePayload
