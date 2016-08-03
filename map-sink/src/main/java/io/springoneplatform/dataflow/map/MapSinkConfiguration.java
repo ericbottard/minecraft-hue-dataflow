@@ -4,28 +4,19 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
-import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * A sink app that displays living entities onSheep events as paths on a map.
  *
  * @author Eric Bottard
  */
-@EnableBinding(Sink.class)
-@EnableConfigurationProperties(MapSinkProperties.class)
+@Configuration
 public class MapSinkConfiguration {
-
-	@Autowired
-	private MapSinkProperties properties;
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
-	@ServiceActivator(inputChannel = Sink.INPUT)
 	public void update(byte[] p) throws IOException {
 		LivingUpdatePayload livingUpdatePayload = objectMapper.readValue(p, LivingUpdatePayload.class);
 		if (livingUpdatePayload.getEntity() == null) {

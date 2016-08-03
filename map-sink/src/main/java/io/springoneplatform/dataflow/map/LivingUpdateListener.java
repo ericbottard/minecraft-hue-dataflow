@@ -8,10 +8,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.PostConstruct;
 import javax.swing.JFrame;
@@ -24,13 +24,15 @@ import javax.swing.JPanel;
  */
 public class LivingUpdateListener extends JPanel {
 
-	private Map<Integer, ColoredPath> paths = new HashMap<>();
+	private Map<Integer, ColoredPath> paths = new ConcurrentHashMap<>();
 
 	private int centerX;
 
 	private int centerZ;
 
-	private int maxLength = 50;
+	private int maxLength = 10;
+
+	private float zoom = 4;
 
 	public LivingUpdateListener() {
 		setBackground(Color.gray);
@@ -99,9 +101,12 @@ public class LivingUpdateListener extends JPanel {
 		int[] xs = new int[maxLength];
 		int[] ys = new int[maxLength];
 
-		g2.translate(getWidth()/2 - centerX, getHeight()/2 - centerZ);
+		g2.scale(zoom, zoom);
+		g2.translate(getWidth()/2/zoom - centerX, getHeight()/2/zoom - centerZ);
 
-		g2.setStroke(new BasicStroke(3));
+
+		// Sheeps
+		g2.setStroke(new BasicStroke(2));
 		for (ColoredPath path : paths.values()) {
 			g2.setColor(path.color);
 			for (int i = 0; i < path.points.size(); i++) {
@@ -111,6 +116,8 @@ public class LivingUpdateListener extends JPanel {
 			g2.drawPolyline(xs, ys, path.points.size());
 		}
 
+		// Player
+		g2.setStroke(new BasicStroke(1));
 		g2.setColor(Color.BLACK);
 		g2.drawArc(centerX, centerZ, 5, 5, 0, 360);
 
