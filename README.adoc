@@ -76,3 +76,24 @@ Let's start by monitoring moving sheeps on the map:
 ```
 dataflow> stream create herd --definition "tcp-client --port=8080 | map" --deploy
 ```
+
+=== Lighting some bulbs
+
+With the HUE emulator running on port 80, turn off the livingUpdates events in the minecraft mod and focus on laying
+ down some colored wool blocks.
+
+Then create a stream similar to the following:
+```
+dataflow> stream create colors --definition "tcp-client --port=8080 | hue" --deploy
+```
+
+=== Time for some partitioning
+
+The following stream allows one to see partitioning in action, using the x coordinate of the laid out block as a
+partitioning key (so that block in the same x row will go to the same lightbulb):
+```
+dataflow> stream create part --definition "tcp-client --port=8080 --outputType=text/plain | hue"
+dataflow> stream deploy part --properties "app.hue.count=3,app.tcp-client.producer.partitionKey=payload.x
+```
+
+image::partitioning-blocks.png[width=630, height=400]
